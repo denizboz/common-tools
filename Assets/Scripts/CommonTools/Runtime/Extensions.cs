@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CommonTools.Runtime
@@ -72,28 +73,61 @@ namespace CommonTools.Runtime
             return array1D;
         }
 
-        public static void Print(this int[] array)
+        public static T[,] ReverseVertical<T>(this T[,] array)
         {
-            var stringBuilder = StringBuilderPool.Get();
-            stringBuilder.EnsureCapacity(array.Length * 3);
-            
-            for (var i = 0; i < array.Length; i++)
+            var width = array.GetLength(1);
+            var height = array.GetLength(0);
+
+            var reversedArray = new T[height, width];
+
+            for (int i = 0; i < height; i++)
             {
-                stringBuilder.Append(array[i]);
-                stringBuilder.Append(", ");
+                for (int j = 0; j < width; j++)
+                {
+                    reversedArray[height - i - 1, j] = array[i, j];
+                }
             }
 
-            stringBuilder.Remove(stringBuilder.Length - 2, 2);
-            Debug.Log(stringBuilder);
+            return reversedArray;
+        }
+
+        public static T[,] ReverseHorizontal<T>(this T[,] array)
+        {
+            var width = array.GetLength(1);
+            var height = array.GetLength(0);
+
+            var reversedArray = new T[height, width];
+            
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    reversedArray[i, width - j - 1] = array[i, j];
+                }
+            }
+
+            return reversedArray;
+        }
+
+        public static T[,] ReverseFull<T>(this T[,] array)
+        {
+            array = array.ReverseVertical();
+            array = array.ReverseHorizontal();
+
+            return array;
+        }
+
+        public static void Print<T>(this IEnumerable<T> array)
+        {
+            Debug.Log(string.Join(",", array));
         }
         
-        public static void Print(this int[,] array)
+        public static void Print<T>(this T[,] array)
         {
             var width = array.GetLength(1);
             var height = array.GetLength(0);
 
             var stringBuilder = StringBuilderPool.Get();
-            stringBuilder.EnsureCapacity(width * 3);
             
             for (int i = 0; i < height; i++)
             {
@@ -101,7 +135,7 @@ namespace CommonTools.Runtime
                 
                 for (int j = 0; j < width; j++)
                 {
-                    stringBuilder.Append(array[i, j]);
+                    stringBuilder.Append(array[i, j].ToString());
                     stringBuilder.Append(", ");
                 }
                 

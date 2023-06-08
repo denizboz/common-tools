@@ -7,7 +7,6 @@ namespace CommonTools.Runtime
     public static class Extensions
     {
         #region ARRAYS
-        
         public static T[] GetRow<T>(this T[,] array, int n)
         {
             var count = array.GetLength(1);
@@ -119,7 +118,7 @@ namespace CommonTools.Runtime
 
         public static void Print<T>(this IEnumerable<T> array)
         {
-            Debug.Log(string.Join(",", array));
+            Debug.Log(string.Join(", ", array));
         }
         
         public static void Print<T>(this T[,] array)

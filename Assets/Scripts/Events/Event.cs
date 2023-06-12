@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CommonTools.Runtime.Events
+namespace Events
 {
     public abstract class Event
     {
@@ -10,7 +10,6 @@ namespace CommonTools.Runtime.Events
         public void AddListener(Action<object> action)
         {
             actions.Add(action);
-            
         }
 
         public void RemoveListener(Action<object> action)

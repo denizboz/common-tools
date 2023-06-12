@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CommonTools.Runtime.Events
+namespace Events
 {
-    public static class CustomEventSystem
+    public static class GameEventSystem
     {
         private static readonly Dictionary<Type, Event> dictionary = new Dictionary<Type, Event>();
 

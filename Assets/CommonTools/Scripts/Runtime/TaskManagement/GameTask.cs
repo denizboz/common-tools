@@ -21,9 +21,6 @@ namespace CommonTools.Runtime.TaskManagement
         
         static GameTask()
         {
-            var updater = new GameObject("Updater").AddComponent<Updater>();
-            Object.DontDestroyOnLoad(updater);
-            
             for (int i = 0; i < poolSize; i++)
             {
                 var task = new GameTask();

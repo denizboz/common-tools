@@ -1,11 +1,18 @@
 ﻿using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace CommonTools.Runtime.TaskManagement
 {
     public class Updater : MonoBehaviour
     {
         private static event Action onUpdate;
+
+        static Updater()
+        {
+            var updater = new GameObject("Updater").AddComponent<Updater>();
+            Object.DontDestroyOnLoad(updater);
+        }
         
         private void Update()
         {

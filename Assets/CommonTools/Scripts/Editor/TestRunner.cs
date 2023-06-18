@@ -9,7 +9,6 @@ namespace CommonTools.Editor
         public static void Test()
         {
             // call what is to be tested.
-            DemoEditor.Run();
         }
     }
 }

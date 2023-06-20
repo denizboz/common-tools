@@ -9,6 +9,6 @@ namespace Demo.Managers
             Bind();
         }
 
-        public abstract void Bind();
+        protected abstract void Bind();
     }
 }

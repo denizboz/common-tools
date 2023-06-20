@@ -6,7 +6,7 @@ namespace Demo.Managers
 {
     public class GameManager : Manager
     {
-        public override void Bind()
+        protected override void Bind()
         {
             DI.Bind<GameManager>(this);
         }

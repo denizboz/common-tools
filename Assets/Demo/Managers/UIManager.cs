@@ -9,7 +9,7 @@ namespace Demo.Managers
     {
         private Text m_damageText;
         
-        public override void Bind()
+        protected override void Bind()
         {
             DI.Bind<UIManager>(this);
         }

@@ -1,5 +1,5 @@
-﻿using CommonTools.Events;
-using CommonTools.Runtime.DependencyInjection;
+﻿using CommonTools.Runtime.DependencyInjection;
+using CommonTools.Runtime.Events;
 using Demo.Events;
 
 namespace Demo.Managers

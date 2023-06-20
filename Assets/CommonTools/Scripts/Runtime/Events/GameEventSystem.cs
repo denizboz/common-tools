@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CommonTools.Events
+namespace CommonTools.Runtime.Events
 {
     public static class GameEventSystem
     {

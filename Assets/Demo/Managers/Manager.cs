@@ -7,8 +7,10 @@ namespace Demo.Managers
         private void Awake()
         {
             Bind();
+            OnAwake();
         }
 
         protected abstract void Bind();
+        protected abstract void OnAwake();
     }
 }

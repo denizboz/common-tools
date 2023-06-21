@@ -11,7 +11,7 @@ namespace Demo.Managers
             DI.Bind<GameManager>(this);
         }
 
-        private void Start()
+        protected override void OnAwake()
         {
             var uiManager = DI.Resolve<UIManager>();
             

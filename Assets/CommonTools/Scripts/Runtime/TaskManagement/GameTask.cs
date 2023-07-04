@@ -8,7 +8,7 @@ namespace CommonTools.Runtime.TaskManagement
     public class GameTask
     {
         private Action m_action;
-        private float m_firingTime;
+        private float m_fireTime;
         
         private static int poolSize = 128;
         private static readonly Queue<GameTask> taskPool = new Queue<GameTask>(poolSize);
@@ -49,7 +49,7 @@ namespace CommonTools.Runtime.TaskManagement
         
         private void Update()
         {
-            if (Time.time < m_firingTime)
+            if (Time.time < m_fireTime)
                 return;
             
             m_action?.Invoke();
@@ -58,7 +58,7 @@ namespace CommonTools.Runtime.TaskManagement
 
         private void SetTime(float time)
         {
-            m_firingTime = time;
+            m_fireTime = time;
         }
         #endregion
 

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Demo;
+using UnityEditor;
 using UnityEngine;
 
 namespace CommonTools.Editor
@@ -9,6 +10,7 @@ namespace CommonTools.Editor
         public static void Test()
         {
             // call what is to be tested.
+            Tester.Test();
         }
     }
 }

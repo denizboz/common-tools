@@ -5,7 +5,7 @@ using UnityEngine;
 namespace CommonTools.Runtime.DependencyInjection
 {
     /*Simple Dependency Container Object for Multiple Injectors/Containers Case*/
-    [CreateAssetMenu(fileName = "DCSO", menuName = "Dependency Injection/New DCSO")]
+    [CreateAssetMenu(fileName = "DCSO", menuName = "Dependency/New Container")]
     public class DCSO : ScriptableObject
     {
         private readonly Dictionary<Type, object> m_dictionary = new Dictionary<Type, object>(16);

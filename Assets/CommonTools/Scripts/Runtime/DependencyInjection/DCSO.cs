@@ -8,22 +8,26 @@ namespace CommonTools.Runtime.DependencyInjection
     [CreateAssetMenu(fileName = "DCSO", menuName = "Dependency Injection/New DCSO")]
     public class DCSO : ScriptableObject
     {
-        private readonly Dictionary<Type, object> m_systemsDictionary = new Dictionary<Type, object>(16);
+        private readonly Dictionary<Type, object> m_dictionary = new Dictionary<Type, object>(16);
 
         public void Bind<T>(T obj) // where T : AbstractSystemClass
         {
             var type = typeof(T);
-            m_systemsDictionary[type] = obj;
+            
+            if (m_dictionary.ContainsKey(type))
+                m_dictionary[type] = obj;
+            else
+                m_dictionary.Add(type, obj);
         }
 
         public T Resolve<T>() // where T : AbstractSystemClass
         {
             var type = typeof(T);
 
-            if (!m_systemsDictionary.ContainsKey(type))
+            if (!m_dictionary.ContainsKey(type))
                 throw new Exception($"No {type} reference in container.");
 
-            return (T)m_systemsDictionary[type];
+            return (T)m_dictionary[type];
         }
     }
 }

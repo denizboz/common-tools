@@ -11,7 +11,11 @@ namespace CommonTools.Runtime.DependencyInjection
         public static void Bind<T>(T obj)
         {
             var type = typeof(T);
-            dictionary[type] = obj;
+            
+            if (dictionary.ContainsKey(type))
+                dictionary[type] = obj;
+            else
+                dictionary.Add(type, obj);
         }
 
         public static T Resolve<T>()

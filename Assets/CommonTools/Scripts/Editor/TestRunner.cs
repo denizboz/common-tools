@@ -1,5 +1,4 @@
-﻿using Demo;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace CommonTools.Editor

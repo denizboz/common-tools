@@ -7,17 +7,21 @@ namespace Demo.Managers
 {
     public class UIManager : Manager
     {
+        private GameManager m_gameManager;
         private Text m_damageText;
-        
+
         protected override void Bind()
         {
             DI.Bind<UIManager>(this);
         }
 
+        protected override void Resolve()
+        {
+            m_gameManager = DI.Resolve<GameManager>();
+        }
+
         protected override void OnAwake()
         {
-            var gameManager = DI.Resolve<GameManager>();
-            
             GameEventSystem.AddListener<LevelStartedEvent>(ShowLevelUI);
             GameEventSystem.AddListener<PlayerGotDamageEvent>(ShowPlayerDamage);
         }

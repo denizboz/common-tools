@@ -10,7 +10,30 @@ namespace Demo.Managers
             OnAwake();
         }
 
-        protected abstract void Bind();
-        protected abstract void OnAwake();
+        private void Start()
+        {
+            Resolve();
+            OnStart();
+        }
+
+        protected virtual void Bind()
+        {
+            // bind self to DI or DC
+        }
+
+        protected virtual void Resolve()
+        {
+            // resolve dependencies
+        }
+        
+        protected virtual void OnAwake()
+        {
+            // code to execute on Awake
+        }
+
+        protected virtual void OnStart()
+        {
+            // code to execute on Start
+        }
     }
 }

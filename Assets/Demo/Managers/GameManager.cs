@@ -6,15 +6,20 @@ namespace Demo.Managers
 {
     public class GameManager : Manager
     {
+        private UIManager m_uiManager;
+        
         protected override void Bind()
         {
             DI.Bind<GameManager>(this);
         }
 
+        protected override void Resolve()
+        {
+            m_uiManager = DI.Resolve<UIManager>();
+        }
+        
         protected override void OnAwake()
         {
-            var uiManager = DI.Resolve<UIManager>();
-            
             GameEventSystem.AddListener<PlayerGotDamageEvent>(FinishLevel);
         }
 

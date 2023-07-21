@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace CommonTools.Runtime.DependencyInjection
 {
-    /*Simple Dependency Container Object for Multiple Injectors/Containers Case*/
+    /// <summary>
+    /// Simple Dependency Container Object for multiple Injectors/Containers case.
+    /// </summary>
     [CreateAssetMenu(fileName = "DCSO", menuName = "Dependency/New Container")]
     public class DCSO : ScriptableObject
     {

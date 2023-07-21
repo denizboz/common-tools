@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace CommonTools.Runtime.DependencyInjection
 {
-    /*Simple Dependency Injector for General Use*/
+    /// <summary>
+    /// Simple Dependency Injector for general use, allowing one dependency per type.
+    /// </summary>
     public static class DI
     {
         private static readonly Dictionary<Type, object> dictionary = new Dictionary<Type, object>(64);

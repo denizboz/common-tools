@@ -86,13 +86,13 @@ namespace CommonTools.Runtime.TaskManagement
             if (taskPool.Count > 0)
                 return;
 
-            poolSize *= 2;
-
-            for (int i = poolSize / 2; i < poolSize; i++)
+            for (int i = 0; i < poolSize; i++)
             {
                 var task = new GameTask();
                 taskPool.Enqueue(task);
             }
+
+            poolSize *= 2;
             
             Debug.LogWarning($"Task pool capacity increased from {(poolSize / 2).ToString()} to {poolSize.ToString()}");
         }

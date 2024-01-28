@@ -17,6 +17,9 @@ namespace CommonTools.Runtime.Events
 
         public void RemoveListener(Action<object> action)
         {
+            if (!actions.Contains(action))
+                return;
+            
             actions.Remove(action);
         }
 

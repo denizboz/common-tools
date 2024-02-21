@@ -19,7 +19,7 @@ namespace Demo.Managers
             m_uiManager = DI.Resolve<UIManager>();
         }
         
-        private void Awake()
+        private void OnEnable()
         {
             EventManager.AddListener<PlayerGotDamageEvent>(FinishLevel);
         }

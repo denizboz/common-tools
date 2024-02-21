@@ -21,7 +21,7 @@ namespace Demo.Managers
             m_gameManager = DI.Resolve<GameManager>();
         }
 
-        private void Awake()
+        private void OnEnable()
         {
             EventManager.AddListener<LevelStartedEvent>(ShowLevelUI);
             EventManager.AddListener<PlayerGotDamageEvent>(ShowPlayerDamage);

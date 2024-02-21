@@ -1,29 +1,36 @@
 ﻿using CommonTools.Runtime.DependencyInjection;
 using CommonTools.Runtime.Events;
 using Demo.Events;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Demo.Managers
 {
-    public class UIManager : Manager
+    public class UIManager : MonoBehaviour
     {
         private GameManager m_gameManager;
         private Text m_damageText;
 
-        protected override void Bind()
+        private void Bind()
         {
-            DI.Bind<UIManager>(this);
+            DI.Bind(this);
         }
 
-        protected override void Resolve()
+        private void Resolve()
         {
             m_gameManager = DI.Resolve<GameManager>();
         }
 
-        protected override void OnAwake()
+        private void Awake()
         {
-            GameEventSystem.AddListener<LevelStartedEvent>(ShowLevelUI);
-            GameEventSystem.AddListener<PlayerGotDamageEvent>(ShowPlayerDamage);
+            EventManager.AddListener<LevelStartedEvent>(ShowLevelUI);
+            EventManager.AddListener<PlayerGotDamageEvent>(ShowPlayerDamage);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.RemoveListener<LevelStartedEvent>(ShowLevelUI);
+            EventManager.RemoveListener<PlayerGotDamageEvent>(ShowPlayerDamage);
         }
 
         private void ShowLevelUI(object obj)
@@ -34,7 +41,7 @@ namespace Demo.Managers
         private void ShowPlayerDamage(object obj)
         {
             var damage = (int)obj;
-            m_damageText.text = $"Damage: {damage}";
+            m_damageText.text = $"Damage: {damage.ToString()}";
         }
     }
 }

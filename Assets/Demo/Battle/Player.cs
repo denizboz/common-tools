@@ -9,17 +9,15 @@ namespace Demo.Battle
     {
         private GameTask m_damageTask;
         
-        
         public void OnDamage(int damageTaken)
         {
             m_damageTask?.Kill();
-
             m_damageTask = GameTask.Wait(0.5f).Do((() => NotifyDamageUI(damageTaken)));
         }
 
         private void NotifyDamageUI(int damageTaken)
         {
-            GameEventSystem.Invoke<PlayerGotDamageEvent>(damageTaken);
+            EventManager.Invoke(PlayerGotDamageEvent.New(damageTaken));
         }
     }
 }

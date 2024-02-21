@@ -1,36 +1,41 @@
 ﻿using CommonTools.Runtime.DependencyInjection;
 using CommonTools.Runtime.Events;
 using Demo.Events;
+using UnityEngine;
 
 namespace Demo.Managers
 {
-    public class GameManager : Manager
+    public class GameManager : MonoBehaviour
     {
         private UIManager m_uiManager;
         
-        protected override void Bind()
+        private void Bind()
         {
-            DI.Bind<GameManager>(this);
+            DI.Bind(this);
         }
 
-        protected override void Resolve()
+        private void Resolve()
         {
             m_uiManager = DI.Resolve<UIManager>();
         }
         
-        protected override void OnAwake()
+        private void Awake()
         {
-            GameEventSystem.AddListener<PlayerGotDamageEvent>(FinishLevel);
+            EventManager.AddListener<PlayerGotDamageEvent>(FinishLevel);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.RemoveListener<PlayerGotDamageEvent>(FinishLevel);
         }
 
         private void StartLevel()
         {
             // starting level
-            
-            GameEventSystem.Invoke<LevelStartedEvent>();
+            EventManager.Invoke(LevelStartedEvent.New());
         }
 
-        private void FinishLevel(object obj)
+        private void FinishLevel(PlayerGotDamageEvent _)
         {
             // ending level
         }
